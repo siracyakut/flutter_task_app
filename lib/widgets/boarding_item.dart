@@ -32,11 +32,11 @@ class _BoardingItemState extends State<BoardingItem> {
           Text(
             widget.title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 40,
               letterSpacing: 1,
               fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(33, 33, 33, 1),
+              color: Theme.of(context).colorScheme.onBackground,
             ),
           ),
           const Gap(25),
@@ -51,7 +51,7 @@ class _BoardingItemState extends State<BoardingItem> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color.fromRGBO(33, 33, 33, 1),
+                color: Theme.of(context).colorScheme.onBackground,
               ),
               child: InkWell(
                 onTap: () {
@@ -66,16 +66,16 @@ class _BoardingItemState extends State<BoardingItem> {
                   children: [
                     Text(
                       widget.isLast ? "Complete" : "Continue",
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.background,
                         fontWeight: FontWeight.w500,
                         fontSize: 20,
                       ),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.chevron_right,
                       size: 50,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.background,
                     ),
                   ],
                 ),
@@ -85,10 +85,10 @@ class _BoardingItemState extends State<BoardingItem> {
           const Gap(20),
           InkWell(
             onTap: () => GoRouter.of(context).replace("/home"),
-            child: const Text(
+            child: Text(
               "Skip",
               style: TextStyle(
-                color: Color.fromARGB(255, 148, 148, 148),
+                color: Theme.of(context).colorScheme.outline,
                 fontSize: 15,
               ),
             ),

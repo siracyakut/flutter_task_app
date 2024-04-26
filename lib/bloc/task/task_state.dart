@@ -1,7 +1,7 @@
 part of 'task_cubit.dart';
 
 class TaskState {
-  final List<Map<String, Task>> taskList;
+  final List<Task> taskList;
   final int sortState;
 
   TaskState({

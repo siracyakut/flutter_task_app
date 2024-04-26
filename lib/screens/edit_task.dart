@@ -3,24 +3,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:nanoid/nanoid.dart';
 
 import '../bloc/task/task_cubit.dart';
 import '../models/task.dart';
 import '../utils/dialogs.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key});
+class EditTaskScreen extends StatefulWidget {
+  final String id;
+
+  const EditTaskScreen({
+    super.key,
+    required this.id,
+  });
 
   @override
-  State<AddTaskScreen> createState() => _AddTaskScreenState();
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _EditTaskScreenState extends State<EditTaskScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   int priorityIndex = 0;
   int colorIndex = 0;
+  int statusIndex = 0;
 
   static const List<String> colorList = [
     "f44235",
@@ -36,9 +41,19 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   void initState() {
     super.initState();
     taskCubit = context.read<TaskCubit>();
+
+    Task targetTask = taskCubit.getTaskWithId(taskId: widget.id);
+
+    setState(() {
+      statusIndex = targetTask.status;
+      priorityIndex = targetTask.priority;
+      colorIndex = colorList.indexOf(targetTask.color);
+      nameController.text = targetTask.title;
+      descriptionController.text = targetTask.description;
+    });
   }
 
-  addTask() {
+  saveTask() {
     if (nameController.text.isEmpty || descriptionController.text.isEmpty) {
       Dialogs().errorDialog(
         context: context,
@@ -48,20 +63,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
 
     Task newTask = Task(
-      id: nanoid(),
+      id: widget.id,
       title: nameController.text,
       description: descriptionController.text,
-      status: 0,
+      status: statusIndex,
       priority: priorityIndex,
       color: colorList.elementAt(colorIndex),
       date: DateFormat('dd.MM.yyyy - kk:mm').format(DateTime.now()),
     );
 
-    taskCubit.addNewTask(task: newTask);
+    taskCubit.updateTask(newTask: newTask, taskId: widget.id);
 
     Dialogs().infoDialog(
       context: context,
-      text: "Task has been successfully added.",
+      text: "Task has been successfully updated.",
       navigate: true,
     );
   }
@@ -83,7 +98,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             color: Theme.of(context).colorScheme.onBackground,
           ),
         ),
-        title: const Text("Add new task"),
+        title: const Text("Edit task"),
       ),
       body: SafeArea(
         bottom: false,
@@ -116,7 +131,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                 ),
-                const Gap(50),
+                const Gap(20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -125,6 +140,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     colorItem(color: Colors.yellow, index: 2),
                     colorItem(color: Colors.green, index: 3),
                     colorItem(color: Colors.purple, index: 4),
+                  ],
+                ),
+                const Gap(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    statusItem(text: "To do", index: 0),
+                    statusItem(text: "In process", index: 1),
+                    statusItem(text: "Done", index: 2),
                   ],
                 ),
               ],
@@ -137,7 +161,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         color: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         child: GestureDetector(
-          onTap: addTask,
+          onTap: saveTask,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
             margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
@@ -149,7 +173,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Add task",
+                  "Save task",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.background,
                     fontSize: 20,
@@ -215,6 +239,38 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           style: TextStyle(
             fontWeight: FontWeight.w500,
             color: priorityIndex == index
+                ? Theme.of(context).colorScheme.background
+                : Theme.of(context).colorScheme.onBackground,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget statusItem({required String text, required int index}) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          statusIndex = index;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 5,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(width: 2),
+          borderRadius: BorderRadius.circular(20),
+          color: statusIndex == index
+              ? Theme.of(context).colorScheme.onBackground
+              : Theme.of(context).colorScheme.background,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: statusIndex == index
                 ? Theme.of(context).colorScheme.background
                 : Theme.of(context).colorScheme.onBackground,
           ),

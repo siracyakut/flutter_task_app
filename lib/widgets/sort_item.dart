@@ -39,20 +39,20 @@ class _SortItemState extends State<SortItem> {
           margin: const EdgeInsets.only(right: 10),
           decoration: BoxDecoration(
             border: Border.all(
-              color: const Color.fromRGBO(20, 20, 20, 1),
+              color: Theme.of(context).colorScheme.onBackground,
               width: 2,
             ),
             color: state.sortState == widget.index
-                ? const Color.fromRGBO(20, 20, 20, 1)
-                : Colors.white,
+                ? Theme.of(context).colorScheme.onBackground
+                : Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
             widget.text,
             style: TextStyle(
               color: state.sortState == widget.index
-                  ? Colors.white
-                  : const Color.fromRGBO(20, 20, 20, 1),
+                  ? Theme.of(context).colorScheme.background
+                  : Theme.of(context).colorScheme.onBackground,
               fontSize: 18,
             ),
           ),

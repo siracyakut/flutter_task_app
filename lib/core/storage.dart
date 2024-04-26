@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/task.dart';
 
 class Storage {
   isFirstLaunch() async {
@@ -8,5 +12,22 @@ class Storage {
       await prefs.setBool("launchedBefore", true);
     }
     return isLaunched;
+  }
+
+  saveTasks(List<Task> taskList) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("tasks", jsonEncode(taskList));
+  }
+
+  getTasks() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? tasks = prefs.getString("tasks");
+    return tasks;
+  }
+
+  // for debugging
+  clearAllForDebug() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 }

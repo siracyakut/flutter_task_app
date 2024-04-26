@@ -8,7 +8,6 @@ class ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -16,10 +15,10 @@ class ErrorScreen extends StatelessWidget {
             children: [
               Image.asset("assets/images/boarding1.jpg"),
               const Gap(25),
-              const Text(
+              Text(
                 "404 Not Found",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),

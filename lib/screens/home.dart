@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
+import '../bloc/task/task_cubit.dart';
+import '../widgets/error_box.dart';
 import '../widgets/sort_item.dart';
 import '../widgets/task_item.dart';
 
@@ -22,20 +25,21 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 15),
-              child: const Column(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Projects",
                     style: TextStyle(
-                      color: Color.fromRGBO(20, 20, 20, 1),
+                      color: Theme.of(context).colorScheme.onBackground,
                       fontSize: 42,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Gap(25),
-                  SingleChildScrollView(
+                  const Gap(25),
+                  const SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -49,14 +53,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) => const TaskItem(),
-                ),
-              ),
+            BlocBuilder<TaskCubit, TaskState>(
+              builder: (context, state) {
+                return Expanded(
+                  flex: state.taskList
+                          .where((element) => element.status == state.sortState)
+                          .isNotEmpty
+                      ? 1
+                      : 0,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    child: state.taskList
+                            .where(
+                                (element) => element.status == state.sortState)
+                            .isNotEmpty
+                        ? ListView.builder(
+                            itemCount: state.taskList
+                                .where((element) =>
+                                    element.status == state.sortState)
+                                .length,
+                            itemBuilder: (context, index) => TaskItem(
+                              task: state.taskList
+                                  .where((element) =>
+                                      element.status == state.sortState)
+                                  .elementAt(index),
+                            ),
+                          )
+                        : const ErrorBox(text: "You don't have any tasks!"),
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -69,25 +95,33 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           decoration: BoxDecoration(
-            color: const Color.fromRGBO(33, 33, 33, 1),
+            color: Theme.of(context).colorScheme.onBackground,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                onPressed: () => GoRouter.of(context).replace("/add-task"),
-                icon: const Icon(
+                onPressed: () => GoRouter.of(context).replace("/home"),
+                icon: Icon(
                   Icons.home_filled,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.background,
                   size: 35,
                 ),
               ),
               IconButton(
                 onPressed: () => GoRouter.of(context).replace("/notes"),
-                icon: const Icon(
+                icon: Icon(
                   Icons.note,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.background,
+                  size: 35,
+                ),
+              ),
+              IconButton(
+                onPressed: () => GoRouter.of(context).replace("/settings"),
+                icon: Icon(
+                  Icons.settings,
+                  color: Theme.of(context).colorScheme.background,
                   size: 35,
                 ),
               ),
@@ -119,12 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.background,
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.add,
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.onBackground,
                       size: 35,
                     ),
                   ),

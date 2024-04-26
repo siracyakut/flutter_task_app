@@ -36,10 +36,9 @@ class _BoardingScreenState extends State<BoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
+        foregroundColor: Theme.of(context).colorScheme.onBackground,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,17 +46,23 @@ class _BoardingScreenState extends State<BoardingScreen> {
             Icon(
               Icons.horizontal_rule,
               size: pageIndex == 0 ? 40 : 30,
-              color: pageIndex == 0 ? Colors.black : Colors.grey,
+              color: pageIndex == 0
+                  ? Theme.of(context).colorScheme.onBackground
+                  : Theme.of(context).colorScheme.outline,
             ),
             Icon(
               Icons.horizontal_rule,
               size: pageIndex == 1 ? 40 : 30,
-              color: pageIndex == 1 ? Colors.black : Colors.grey,
+              color: pageIndex == 1
+                  ? Theme.of(context).colorScheme.onBackground
+                  : Theme.of(context).colorScheme.outline,
             ),
             Icon(
               Icons.horizontal_rule,
               size: pageIndex == 2 ? 40 : 30,
-              color: pageIndex == 2 ? Colors.black : Colors.grey,
+              color: pageIndex == 2
+                  ? Theme.of(context).colorScheme.onBackground
+                  : Theme.of(context).colorScheme.outline,
             ),
           ],
         ),

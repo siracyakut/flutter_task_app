@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/task/task_cubit.dart';
 import 'core/routes.dart';
+import 'core/themes.dart';
 
 void main() {
   runApp(const TaskApp());
@@ -17,15 +18,18 @@ class TaskApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => TaskCubit(
-            TaskState(sortState: 0, taskList: []),
+            TaskState(
+              sortState: 0,
+              taskList: [],
+            ),
           ),
         ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Poppins',
-        ),
+        themeMode: ThemeMode.dark,
+        theme: lightTheme,
+        darkTheme: darkTheme,
         routerConfig: routes,
       ),
     );
