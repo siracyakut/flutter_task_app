@@ -5,6 +5,7 @@ import '../screens/core/error.dart';
 import '../screens/core/loading.dart';
 import '../screens/edit_task.dart';
 import '../screens/home.dart';
+import '../screens/settings.dart';
 import '../screens/static/boarding.dart';
 
 final routes = GoRouter(
@@ -21,6 +22,10 @@ final routes = GoRouter(
     GoRoute(
       path: '/home',
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
     ),
     GoRoute(
       path: '/add-task',

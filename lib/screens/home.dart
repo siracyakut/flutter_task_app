@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../bloc/task/task_cubit.dart';
+import '../core/localizations.dart';
 import '../widgets/error_box.dart';
 import '../widgets/sort_item.dart';
 import '../widgets/task_item.dart';
@@ -16,6 +18,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  requestPermission() async {
+    var status = await Permission.camera.status;
+    if (!status.isGranted) {
+      await Permission.camera.request();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    requestPermission();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Projects",
+                    AppLocalizations.of(context).getTranslate("home-title"),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onBackground,
                       fontSize: 42,
@@ -39,14 +54,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const Gap(25),
-                  const SingleChildScrollView(
+                  SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SortItem(index: 0, text: "To do"),
-                        SortItem(index: 1, text: "In process"),
-                        SortItem(index: 2, text: "Done"),
+                        SortItem(
+                          index: 0,
+                          text:
+                              AppLocalizations.of(context).getTranslate("todo"),
+                        ),
+                        SortItem(
+                          index: 1,
+                          text: AppLocalizations.of(context)
+                              .getTranslate("in-process"),
+                        ),
+                        SortItem(
+                          index: 2,
+                          text:
+                              AppLocalizations.of(context).getTranslate("done"),
+                        ),
                       ],
                     ),
                   ),
@@ -79,7 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .elementAt(index),
                             ),
                           )
-                        : const ErrorBox(text: "You don't have any tasks!"),
+                        : ErrorBox(
+                            text: AppLocalizations.of(context)
+                                .getTranslate("no-task")),
                   ),
                 );
               },
@@ -105,14 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () => GoRouter.of(context).replace("/home"),
                 icon: Icon(
                   Icons.home_filled,
-                  color: Theme.of(context).colorScheme.background,
-                  size: 35,
-                ),
-              ),
-              IconButton(
-                onPressed: () => GoRouter.of(context).replace("/notes"),
-                icon: Icon(
-                  Icons.note,
                   color: Theme.of(context).colorScheme.background,
                   size: 35,
                 ),

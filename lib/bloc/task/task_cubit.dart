@@ -61,8 +61,9 @@ class TaskCubit extends Cubit<TaskState> {
   }
 
   getTaskWithId({required String taskId}) {
-    Task foundTask =
-        state.taskList.firstWhere((element) => element.id == taskId);
+    Task foundTask = state.taskList.firstWhere(
+      (element) => element.id == taskId,
+    );
     return foundTask;
   }
 }

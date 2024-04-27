@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../core/localizations.dart';
+
 class Dialogs {
   errorDialog({required BuildContext context, required String text}) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.error),
-        title: const Text("Error"),
+        title: Text(AppLocalizations.of(context).getTranslate("error")),
         content: Text(text),
         actions: [
           OutlinedButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text("OK"),
+            child: Text(AppLocalizations.of(context).getTranslate("ok")),
           ),
         ],
       ),
@@ -27,7 +29,7 @@ class Dialogs {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Info"),
+        title: Text(AppLocalizations.of(context).getTranslate("info")),
         content: Text(text),
         actions: [
           OutlinedButton(
@@ -35,7 +37,7 @@ class Dialogs {
               Navigator.of(context).pop();
               if (navigate) GoRouter.of(context).replace("/home");
             },
-            child: const Text("OK"),
+            child: Text(AppLocalizations.of(context).getTranslate("ok")),
           ),
         ],
       ),

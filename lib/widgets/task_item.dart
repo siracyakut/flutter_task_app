@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
+import '../core/localizations.dart';
 import '../models/task.dart';
 import 'textbox.dart';
 
@@ -13,11 +14,21 @@ class TaskItem extends StatelessWidget {
     required this.task,
   });
 
-  static const List<String> priorityList = ["ASAP", "High", "Medium", "Low"];
-  static const List<String> statusList = ["To do", "In process", "Done"];
-
   @override
   Widget build(BuildContext context) {
+    List<String> priorityList = [
+      AppLocalizations.of(context).getTranslate("asap"),
+      AppLocalizations.of(context).getTranslate("high"),
+      AppLocalizations.of(context).getTranslate("medium"),
+      AppLocalizations.of(context).getTranslate("low")
+    ];
+
+    List<String> statusList = [
+      AppLocalizations.of(context).getTranslate("todo"),
+      AppLocalizations.of(context).getTranslate("in-process"),
+      AppLocalizations.of(context).getTranslate("done")
+    ];
+
     return GestureDetector(
       onTap: () {
         context.goNamed("edit-task", pathParameters: {"id": task.id});

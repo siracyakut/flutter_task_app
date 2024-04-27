@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:nanoid/nanoid.dart';
 
 import '../bloc/task/task_cubit.dart';
+import '../core/localizations.dart';
 import '../models/task.dart';
 import '../utils/dialogs.dart';
 
@@ -42,7 +43,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     if (nameController.text.isEmpty || descriptionController.text.isEmpty) {
       Dialogs().errorDialog(
         context: context,
-        text: "Please fill in the blanks.",
+        text: AppLocalizations.of(context).getTranslate("blanks"),
       );
       return;
     }
@@ -61,7 +62,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
     Dialogs().infoDialog(
       context: context,
-      text: "Task has been successfully added.",
+      text: AppLocalizations.of(context).getTranslate("task-added"),
       navigate: true,
     );
   }
@@ -83,7 +84,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             color: Theme.of(context).colorScheme.onBackground,
           ),
         ),
-        title: const Text("Add new task"),
+        title: Text(AppLocalizations.of(context).getTranslate("add-new-task")),
       ),
       body: SafeArea(
         bottom: false,
@@ -95,23 +96,41 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               children: [
                 TextField(
                   controller: nameController,
-                  decoration: const InputDecoration(hintText: "Task name"),
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)
+                        .getTranslate("task-name-hint"),
+                  ),
                 ),
                 const Gap(25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    priorityItem(text: "ASAP", index: 0),
-                    priorityItem(text: "High", index: 1),
-                    priorityItem(text: "Medium", index: 2),
-                    priorityItem(text: "Low", index: 3),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("asap"),
+                      index: 0,
+                    ),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("high"),
+                      index: 1,
+                    ),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("medium"),
+                      index: 2,
+                    ),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("low"),
+                      index: 3,
+                    ),
                   ],
                 ),
                 const Gap(20),
                 TextField(
                   controller: descriptionController,
-                  decoration:
-                      const InputDecoration(hintText: "Task description"),
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context).getTranslate(
+                      "task-description-hint",
+                    ),
+                  ),
                   minLines: 6,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
@@ -149,7 +168,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Add task",
+                  AppLocalizations.of(context).getTranslate("add-task-button"),
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.background,
                     fontSize: 20,

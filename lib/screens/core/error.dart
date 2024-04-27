@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/localizations.dart';
+
 class ErrorScreen extends StatelessWidget {
   const ErrorScreen({super.key});
 
@@ -26,7 +28,9 @@ class ErrorScreen extends StatelessWidget {
               const Gap(25),
               ElevatedButton(
                 onPressed: () => GoRouter.of(context).replace("/home"),
-                child: const Text("Go Home"),
+                child: Text(
+                  AppLocalizations.of(context).getTranslate("go-home"),
+                ),
               ),
             ],
           ),

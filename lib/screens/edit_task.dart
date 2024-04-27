@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../bloc/task/task_cubit.dart';
+import '../core/localizations.dart';
 import '../models/task.dart';
 import '../utils/dialogs.dart';
 
@@ -57,7 +58,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     if (nameController.text.isEmpty || descriptionController.text.isEmpty) {
       Dialogs().errorDialog(
         context: context,
-        text: "Please fill in the blanks.",
+        text: AppLocalizations.of(context).getTranslate("blanks"),
       );
       return;
     }
@@ -76,7 +77,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
     Dialogs().infoDialog(
       context: context,
-      text: "Task has been successfully updated.",
+      text: AppLocalizations.of(context).getTranslate("task-updated"),
       navigate: true,
     );
   }
@@ -98,7 +99,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
             color: Theme.of(context).colorScheme.onBackground,
           ),
         ),
-        title: const Text("Edit task"),
+        title: Text(AppLocalizations.of(context).getTranslate("edit-task")),
       ),
       body: SafeArea(
         bottom: false,
@@ -110,23 +111,40 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               children: [
                 TextField(
                   controller: nameController,
-                  decoration: const InputDecoration(hintText: "Task name"),
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)
+                        .getTranslate("task-name-hint"),
+                  ),
                 ),
                 const Gap(25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    priorityItem(text: "ASAP", index: 0),
-                    priorityItem(text: "High", index: 1),
-                    priorityItem(text: "Medium", index: 2),
-                    priorityItem(text: "Low", index: 3),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("asap"),
+                      index: 0,
+                    ),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("high"),
+                      index: 1,
+                    ),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("medium"),
+                      index: 2,
+                    ),
+                    priorityItem(
+                      text: AppLocalizations.of(context).getTranslate("low"),
+                      index: 3,
+                    ),
                   ],
                 ),
                 const Gap(20),
                 TextField(
                   controller: descriptionController,
-                  decoration:
-                      const InputDecoration(hintText: "Task description"),
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)
+                        .getTranslate("task-description-hint"),
+                  ),
                   minLines: 6,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
@@ -146,9 +164,19 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    statusItem(text: "To do", index: 0),
-                    statusItem(text: "In process", index: 1),
-                    statusItem(text: "Done", index: 2),
+                    statusItem(
+                      text: AppLocalizations.of(context).getTranslate("todo"),
+                      index: 0,
+                    ),
+                    statusItem(
+                      text: AppLocalizations.of(context)
+                          .getTranslate("in-process"),
+                      index: 1,
+                    ),
+                    statusItem(
+                      text: AppLocalizations.of(context).getTranslate("done"),
+                      index: 2,
+                    ),
                   ],
                 ),
               ],
@@ -173,7 +201,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Save task",
+                  AppLocalizations.of(context).getTranslate("edit-task-button"),
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.background,
                     fontSize: 20,

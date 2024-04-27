@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../bloc/client/client_cubit.dart';
 import '../../bloc/task/task_cubit.dart';
 import '../../core/storage.dart';
 
@@ -16,6 +17,7 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   late TaskCubit taskCubit;
+  late ClientCubit clientCubit;
 
   checkFirstLaunch() async {
     var storage = Storage();
@@ -33,11 +35,20 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (json != null) {
       taskCubit.setTasks(tasksJson: json);
     }
+
+    var config = await Storage().getConfig();
+    if (config["theme"] != null) {
+      clientCubit.setTheme(newTheme: config["theme"]);
+    }
+    if (config["language"] != null) {
+      clientCubit.setLanguage(newLanguage: config["language"]);
+    }
   }
 
   @override
   void initState() {
     taskCubit = context.read<TaskCubit>();
+    clientCubit = context.read<ClientCubit>();
     checkFirstLaunch();
     loadApp();
     super.initState();
