@@ -23,9 +23,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     var storage = Storage();
     var isFirstLaunch = await storage.isFirstLaunch();
     if (isFirstLaunch != null) {
-      GoRouter.of(context).replace("/home");
+      context.go("/home");
     } else {
-      GoRouter.of(context).replace("/boarding");
+      context.go("/boarding");
     }
   }
 

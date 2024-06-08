@@ -27,7 +27,7 @@ class ErrorScreen extends StatelessWidget {
               ),
               const Gap(25),
               ElevatedButton(
-                onPressed: () => GoRouter.of(context).replace("/home"),
+                onPressed: () => context.go("/home"),
                 child: Text(
                   AppLocalizations.of(context).getTranslate("go-home"),
                 ),

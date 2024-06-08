@@ -40,7 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         surfaceTintColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.onBackground,
         leading: IconButton(
-          onPressed: () => GoRouter.of(context).replace("/home"),
+          onPressed: () => context.go("/home"),
           icon: Icon(
             Icons.arrow_back_ios_new_outlined,
             color: Theme.of(context).colorScheme.onBackground,

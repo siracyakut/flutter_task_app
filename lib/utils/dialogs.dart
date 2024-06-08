@@ -35,7 +35,7 @@ class Dialogs {
           OutlinedButton(
             onPressed: () {
               Navigator.of(context).pop();
-              if (navigate) GoRouter.of(context).replace("/home");
+              if (navigate) context.go("/home");
             },
             child: Text(AppLocalizations.of(context).getTranslate("ok")),
           ),

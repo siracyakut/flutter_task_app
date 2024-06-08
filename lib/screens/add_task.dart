@@ -78,7 +78,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         surfaceTintColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.onBackground,
         leading: IconButton(
-          onPressed: () => GoRouter.of(context).replace("/home"),
+          onPressed: () => context.go("/home"),
           icon: Icon(
             Icons.arrow_back_ios_new_outlined,
             color: Theme.of(context).colorScheme.onBackground,
@@ -102,26 +102,33 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ),
                 ),
                 const Gap(25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("asap"),
-                      index: 0,
-                    ),
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("high"),
-                      index: 1,
-                    ),
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("medium"),
-                      index: 2,
-                    ),
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("low"),
-                      index: 3,
-                    ),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      priorityItem(
+                        text: AppLocalizations.of(context).getTranslate("asap"),
+                        index: 0,
+                      ),
+                      const Gap(5),
+                      priorityItem(
+                        text: AppLocalizations.of(context).getTranslate("high"),
+                        index: 1,
+                      ),
+                      const Gap(5),
+                      priorityItem(
+                        text:
+                            AppLocalizations.of(context).getTranslate("medium"),
+                        index: 2,
+                      ),
+                      const Gap(5),
+                      priorityItem(
+                        text: AppLocalizations.of(context).getTranslate("low"),
+                        index: 3,
+                      ),
+                    ],
+                  ),
                 ),
                 const Gap(20),
                 TextField(
@@ -136,15 +143,24 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   maxLines: null,
                 ),
                 const Gap(50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    colorItem(color: Colors.red, index: 0),
-                    colorItem(color: Colors.blue, index: 1),
-                    colorItem(color: Colors.yellow, index: 2),
-                    colorItem(color: Colors.green, index: 3),
-                    colorItem(color: Colors.purple, index: 4),
-                  ],
+                Center(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        colorItem(color: Colors.red, index: 0),
+                        const Gap(2),
+                        colorItem(color: Colors.blue, index: 1),
+                        const Gap(2),
+                        colorItem(color: Colors.yellow, index: 2),
+                        const Gap(2),
+                        colorItem(color: Colors.green, index: 3),
+                        const Gap(2),
+                        colorItem(color: Colors.purple, index: 4),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

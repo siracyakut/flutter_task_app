@@ -43,55 +43,53 @@ class _BoardingItemState extends State<BoardingItem> {
               ),
             ),
             const Gap(25),
-            InkWell(
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 60),
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 25,
-                  right: 10,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-                child: InkWell(
-                  onTap: () {
-                    if (widget.isLast) {
-                      GoRouter.of(context).replace("/home");
-                    } else {
-                      widget.skipFunc();
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.isLast
-                            ? AppLocalizations.of(context)
-                                .getTranslate("complete")
-                            : AppLocalizations.of(context)
-                                .getTranslate("continue"),
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.background,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                        ),
-                      ),
-                      Icon(
-                        Icons.chevron_right,
-                        size: 50,
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 60),
+              padding: const EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+                left: 25,
+                right: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+              child: InkWell(
+                onTap: () {
+                  if (widget.isLast) {
+                    context.go("/home");
+                  } else {
+                    widget.skipFunc();
+                  }
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.isLast
+                          ? AppLocalizations.of(context)
+                              .getTranslate("complete")
+                          : AppLocalizations.of(context)
+                              .getTranslate("continue"),
+                      style: TextStyle(
                         color: Theme.of(context).colorScheme.background,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
                       ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.chevron_right,
+                      size: 50,
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                  ],
                 ),
               ),
             ),
             const Gap(20),
             InkWell(
-              onTap: () => GoRouter.of(context).replace("/home"),
+              onTap: () => context.go("/home"),
               child: Text(
                 AppLocalizations.of(context).getTranslate("skip"),
                 style: TextStyle(

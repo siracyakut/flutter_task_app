@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../bloc/client/client_cubit.dart';
 import '../bloc/task/task_cubit.dart';
 import '../core/localizations.dart';
 import '../models/task.dart';
@@ -37,11 +38,13 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   ];
 
   late TaskCubit taskCubit;
+  late ClientCubit clientCubit;
 
   @override
   void initState() {
     super.initState();
     taskCubit = context.read<TaskCubit>();
+    clientCubit = context.read<ClientCubit>();
 
     Task targetTask = taskCubit.getTaskWithId(taskId: widget.id);
 
@@ -93,7 +96,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
         surfaceTintColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.onBackground,
         leading: IconButton(
-          onPressed: () => GoRouter.of(context).replace("/home"),
+          onPressed: () => context.go("/home"),
           icon: Icon(
             Icons.arrow_back_ios_new_outlined,
             color: Theme.of(context).colorScheme.onBackground,
@@ -117,26 +120,33 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   ),
                 ),
                 const Gap(25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("asap"),
-                      index: 0,
-                    ),
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("high"),
-                      index: 1,
-                    ),
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("medium"),
-                      index: 2,
-                    ),
-                    priorityItem(
-                      text: AppLocalizations.of(context).getTranslate("low"),
-                      index: 3,
-                    ),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      priorityItem(
+                        text: AppLocalizations.of(context).getTranslate("asap"),
+                        index: 0,
+                      ),
+                      const Gap(5),
+                      priorityItem(
+                        text: AppLocalizations.of(context).getTranslate("high"),
+                        index: 1,
+                      ),
+                      const Gap(5),
+                      priorityItem(
+                        text:
+                            AppLocalizations.of(context).getTranslate("medium"),
+                        index: 2,
+                      ),
+                      const Gap(5),
+                      priorityItem(
+                        text: AppLocalizations.of(context).getTranslate("low"),
+                        index: 3,
+                      ),
+                    ],
+                  ),
                 ),
                 const Gap(20),
                 TextField(
@@ -150,34 +160,50 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   maxLines: null,
                 ),
                 const Gap(20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    colorItem(color: Colors.red, index: 0),
-                    colorItem(color: Colors.blue, index: 1),
-                    colorItem(color: Colors.yellow, index: 2),
-                    colorItem(color: Colors.green, index: 3),
-                    colorItem(color: Colors.purple, index: 4),
-                  ],
+                Center(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        colorItem(color: Colors.red, index: 0),
+                        const Gap(2),
+                        colorItem(color: Colors.blue, index: 1),
+                        const Gap(2),
+                        colorItem(color: Colors.yellow, index: 2),
+                        const Gap(2),
+                        colorItem(color: Colors.green, index: 3),
+                        const Gap(2),
+                        colorItem(color: Colors.purple, index: 4),
+                      ],
+                    ),
+                  ),
                 ),
                 const Gap(20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    statusItem(
-                      text: AppLocalizations.of(context).getTranslate("todo"),
-                      index: 0,
-                    ),
-                    statusItem(
-                      text: AppLocalizations.of(context)
-                          .getTranslate("in-process"),
-                      index: 1,
-                    ),
-                    statusItem(
-                      text: AppLocalizations.of(context).getTranslate("done"),
-                      index: 2,
-                    ),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: clientCubit.getLanguage() == "en"
+                      ? Axis.vertical
+                      : Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      statusItem(
+                        text: AppLocalizations.of(context).getTranslate("todo"),
+                        index: 0,
+                      ),
+                      const Gap(5),
+                      statusItem(
+                        text: AppLocalizations.of(context)
+                            .getTranslate("in-process"),
+                        index: 1,
+                      ),
+                      const Gap(5),
+                      statusItem(
+                        text: AppLocalizations.of(context).getTranslate("done"),
+                        index: 2,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
