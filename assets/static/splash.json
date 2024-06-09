@@ -1,0 +1,22 @@
+{
+  "logo": "https://i.hizliresim.com/mzvergq.png",
+  "title": "Task Management App",
+  "version": "1.5.5",
+  "duration": 3500,
+  "slogans": {
+    "tr": [
+      "Görevlerini Düzenle, Hedeflerine Ulaş!",
+      "Her Adımda Yanında, Planlı ve Verimli Kal!",
+      "Görevlerin Kontrol Altında, Başarı Bir Adım Uzağında!",
+      "Zamanını İyi Yönet, Hayatını Kolaylaştır!",
+      "Görevlerin Düzenli, Hayatın Dengeli!"
+    ],
+    "en": [
+      "Organize Your Tasks, Achieve Your Goals!",
+      "Stay Planned and Productive, Every Step of the Way!",
+      "Keep Your Tasks Under Control, Success is Within Reach!",
+      "Manage Your Time Well, Simplify Your Life!",
+      "Tasks in Order, Life in Balance!"
+    ]
+  }
+}

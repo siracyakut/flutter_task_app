@@ -47,4 +47,34 @@ class Storage {
     final bool? theme = prefs.getBool("theme");
     return {"language": language, "theme": theme};
   }
+
+  saveProfileInfo(
+    String? name,
+    String? surname,
+    String? avatarPath,
+    String? country,
+  ) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (name != null) await prefs.setString("name", name);
+    if (surname != null) await prefs.setString("surname", surname);
+    if (avatarPath != null) await prefs.setString("avatarPath", avatarPath);
+    if (country != null) await prefs.setString("country", country);
+  }
+
+  getProfileInfo() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final String? name = prefs.getString("name");
+    final String? surname = prefs.getString("surname");
+    final String? avatarPath = prefs.getString("avatarPath");
+    final String? country = prefs.getString("country");
+
+    return {
+      "name": name,
+      "surname": surname,
+      "avatarPath": avatarPath,
+      "country": country
+    };
+  }
 }

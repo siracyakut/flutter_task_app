@@ -29,14 +29,14 @@ class _SortItemState extends State<SortItem> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
-      return InkWell(
+      return GestureDetector(
         onTap: () => taskCubit.setSortState(newSortState: widget.index),
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 12,
           ),
-          margin: const EdgeInsets.only(right: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10.0),
           decoration: BoxDecoration(
             border: Border.all(
               color: Theme.of(context).colorScheme.onBackground,

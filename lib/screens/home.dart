@@ -37,42 +37,38 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           width: double.infinity,
           margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                AppLocalizations.of(context).getTranslate("home-title"),
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onBackground,
-                  fontSize: 42,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Gap(25),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SortItem(
-                      index: 0,
-                      text: AppLocalizations.of(context).getTranslate("todo"),
-                    ),
-                    SortItem(
-                      index: 1,
-                      text: AppLocalizations.of(context)
-                          .getTranslate("in-process"),
-                    ),
-                    SortItem(
-                      index: 2,
-                      text: AppLocalizations.of(context).getTranslate("done"),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          child: Text(
+            AppLocalizations.of(context).getTranslate("home-title"),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onBackground,
+              fontSize: 42,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
+        Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SortItem(
+                  index: 0,
+                  text: AppLocalizations.of(context).getTranslate("todo"),
+                ),
+                SortItem(
+                  index: 1,
+                  text: AppLocalizations.of(context).getTranslate("in-process"),
+                ),
+                SortItem(
+                  index: 2,
+                  text: AppLocalizations.of(context).getTranslate("done"),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const Gap(20),
         BlocBuilder<TaskCubit, TaskState>(
           builder: (context, state) {
             return Expanded(

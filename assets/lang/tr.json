@@ -31,5 +31,12 @@
   "turkish": "Türkçe",
   "boarding1": "Önemli olan işe odaklanın",
   "boarding2": "Düzenli ve verimli kalın",
-  "boarding3": "Görevleri planlayın, yönetin ve takip edin"
+  "boarding3": "Görevleri planlayın, yönetin ve takip edin",
+  "profile": "Profil",
+  "name": "Ad",
+  "surname": "Soyad",
+  "file-not-supported": "Seçtiğiniz dosya formatı desteklenmiyor.",
+  "file-deprecated": "Seçtiğiniz dosya bozuk. Lütfen farklı bir dosya deneyin.",
+  "file-min-400px": "Seçtiğiniz resmin yükseklik ve genişliği minimum 400px olmalıdır.",
+  "file-error": "Dosya seçim işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin."
 }

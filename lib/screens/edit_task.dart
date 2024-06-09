@@ -161,8 +161,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         .getTranslate("task-description-hint"),
                   ),
                   minLines: 6,
+                  maxLines: 6,
                   keyboardType: TextInputType.multiline,
-                  maxLines: null,
                 ),
                 const Gap(20),
                 Center(
@@ -187,9 +187,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 const Gap(20),
                 Center(
                   child: SingleChildScrollView(
-                    scrollDirection: clientCubit.getLanguage() == "en"
-                        ? Axis.vertical
-                        : Axis.horizontal,
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

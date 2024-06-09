@@ -33,7 +33,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                onPressed: () => context.go("/home"),
+                onPressed: () => context.push("/home"),
                 icon: Icon(
                   Icons.home_filled,
                   color: Theme.of(context).colorScheme.background,
@@ -41,7 +41,15 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 ),
               ),
               IconButton(
-                onPressed: () => context.go("/settings"),
+                onPressed: () => context.push("/profile"),
+                icon: Icon(
+                  Icons.person,
+                  color: Theme.of(context).colorScheme.background,
+                  size: 35,
+                ),
+              ),
+              IconButton(
+                onPressed: () => context.push("/settings"),
                 icon: Icon(
                   Icons.settings,
                   color: Theme.of(context).colorScheme.background,
@@ -72,7 +80,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                   ..rotateZ(0),
                 alignment: FractionalOffset.center,
                 child: InkWell(
-                  onTap: () => context.go("/add-task"),
+                  onTap: () => context.push("/add-task"),
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(

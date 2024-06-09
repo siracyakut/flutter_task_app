@@ -30,64 +30,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 80,
-        backgroundColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        foregroundColor: Theme.of(context).colorScheme.onBackground,
-        title: Text(AppLocalizations.of(context).getTranslate("settings")),
-      ),
-      body: SafeArea(
-        bottom: false,
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(AppLocalizations.of(context).getTranslate("dark-mode")),
-                  Switch(
-                    value: darkMode,
-                    onChanged: (value) {
-                      setState(() {
-                        darkMode = !darkMode;
-                        clientCubit.setTheme(newTheme: darkMode);
-                      });
-                    },
-                  ),
-                ],
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              AppLocalizations.of(context).getTranslate("settings"),
+              textAlign: TextAlign.left,
+              style: const TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
               ),
-              const Gap(10),
-              Divider(color: Theme.of(context).colorScheme.onBackground),
-              const Gap(15),
+            ),
+          ),
+          const Gap(30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(AppLocalizations.of(context).getTranslate("dark-mode")),
+              Switch(
+                value: darkMode,
+                onChanged: (value) {
+                  setState(() {
+                    darkMode = !darkMode;
+                    clientCubit.setTheme(newTheme: darkMode);
+                  });
+                },
+              ),
+            ],
+          ),
+          const Gap(10),
+          Divider(color: Theme.of(context).colorScheme.onBackground),
+          const Gap(15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(AppLocalizations.of(context).getTranslate("language")),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalizations.of(context).getTranslate("language")),
-                  Row(
-                    children: [
-                      languageOption(
-                        context,
-                        AppLocalizations.of(context).getTranslate("english"),
-                        "en",
-                      ),
-                      const Gap(20),
-                      languageOption(
-                        context,
-                        AppLocalizations.of(context).getTranslate("turkish"),
-                        "tr",
-                      ),
-                    ],
+                  languageOption(
+                    context,
+                    AppLocalizations.of(context).getTranslate("english"),
+                    "en",
+                  ),
+                  const Gap(20),
+                  languageOption(
+                    context,
+                    AppLocalizations.of(context).getTranslate("turkish"),
+                    "tr",
                   ),
                 ],
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

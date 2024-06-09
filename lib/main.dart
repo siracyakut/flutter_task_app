@@ -34,13 +34,15 @@ class TaskApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ClientCubit(
             ClientState(
-              darkTheme: SchedulerBinding
-                          .instance.platformDispatcher.platformBrightness ==
-                      Brightness.dark
-                  ? true
-                  : false,
-              language: Platform.localeName.split("_")[0],
-            ),
+                darkTheme: SchedulerBinding
+                            .instance.platformDispatcher.platformBrightness ==
+                        Brightness.dark
+                    ? true
+                    : false,
+                language: AppLocalizations.isSupported(
+                        Platform.localeName.split("_")[0])
+                    ? Platform.localeName.split("_")[0]
+                    : "en"),
           ),
         ),
       ],

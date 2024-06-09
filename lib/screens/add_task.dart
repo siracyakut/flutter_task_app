@@ -144,8 +144,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                   ),
                   minLines: 6,
+                  maxLines: 6,
                   keyboardType: TextInputType.multiline,
-                  maxLines: null,
                 ),
                 const Gap(50),
                 Center(

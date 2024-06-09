@@ -14,7 +14,6 @@ import '../../bloc/client/client_cubit.dart';
 import '../../bloc/task/task_cubit.dart';
 import '../../core/data.dart';
 import '../../core/storage.dart';
-import '../../services/api.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -57,33 +56,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   getSplashData() async {
-    if (!kIsWeb) {
-      CacheManager cm = CacheManager();
-      API api = API();
+    CacheManager cm = CacheManager();
 
-      Map<String, dynamic>? splashFile =
-          await cm.loadJsonFromCache("splash.json");
+    Map<String, dynamic>? splashFile = await cm.getSplashScreenData();
 
-      if (splashFile == null) {
-        splashFile = await api.fetchSplashFiles();
-      } else {
-        final version = await api.getSplashFileVersion();
-        if (version != splashFile["version"]) {
-          splashFile = await api.fetchSplashFiles();
-        }
-      }
+    if (!kIsWeb) cacheDir = await getApplicationCacheDirectory();
 
-      cacheDir = await getApplicationCacheDirectory();
+    setState(() {
+      splashData = splashFile!;
+      loaded = true;
+    });
 
-      setState(() {
-        splashData = splashFile!;
-        loaded = true;
-      });
-
-      Future.delayed(Duration(milliseconds: splashFile!["duration"]), () {
-        checkFirstLaunch();
-      });
-    }
+    Future.delayed(Duration(milliseconds: splashFile!["duration"]), () {
+      checkFirstLaunch();
+    });
   }
 
   @override
@@ -104,15 +90,20 @@ class _SplashScreenState extends State<SplashScreen> {
             : BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
                 return SizedBox.expand(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 13.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.file(
-                          File("${cacheDir.path}/logo.png"),
-                          width: 150,
-                        ),
+                        kIsWeb
+                            ? Image.network(
+                                splashData["logo"],
+                                width: 150,
+                              )
+                            : Image.file(
+                                File("${cacheDir.path}/logo.png"),
+                                width: 150,
+                              ),
                         Column(
                           children: [
                             Text(

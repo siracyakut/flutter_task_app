@@ -6,6 +6,7 @@ import '../screens/core/error.dart';
 import '../screens/core/splash.dart';
 import '../screens/edit_task.dart';
 import '../screens/home.dart';
+import '../screens/profile.dart';
 import '../screens/settings.dart';
 import '../screens/static/boarding.dart';
 import '../screens/static/layout.dart';
@@ -33,6 +34,13 @@ final routes = GoRouter(
           parentNavigatorKey: _shellNavigatorKey,
           pageBuilder: (context, state) => const NoTransitionPage(
             child: SettingsScreen(),
+          ),
+        ),
+        GoRoute(
+          path: '/profile',
+          parentNavigatorKey: _shellNavigatorKey,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: ProfileScreen(),
           ),
         ),
       ],

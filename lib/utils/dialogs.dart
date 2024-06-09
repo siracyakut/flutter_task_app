@@ -33,14 +33,13 @@ class Dialogs {
         content: Text(text),
         actions: [
           OutlinedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              if (navigate) context.go("/home");
-            },
+            onPressed: () => Navigator.of(context).pop(),
             child: Text(AppLocalizations.of(context).getTranslate("ok")),
           ),
         ],
       ),
-    );
+    ).then((val) {
+      if (navigate) context.go("/home");
+    });
   }
 }

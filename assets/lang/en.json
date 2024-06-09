@@ -31,5 +31,12 @@
   "turkish": "Turkish",
   "boarding1": "Focus on the work that matters",
   "boarding2": "Stay organized and efficient",
-  "boarding3": "Plan, manage and track tasks"
+  "boarding3": "Plan, manage and track tasks",
+  "profile": "Profile",
+  "name": "Name",
+  "surname": "Surname",
+  "file-not-supported": "The file format you selected is not supported.",
+  "file-deprecated": "The file you selected is corrupt.",
+  "file-min-400px": "The height and width of the image you choose must be at least 400px.",
+  "file-error": "An error occurred during the file selection process. Please try again later."
 }

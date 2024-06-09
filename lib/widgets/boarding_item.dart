@@ -36,7 +36,7 @@ class _BoardingItemState extends State<BoardingItem> {
               widget.title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 32,
                 letterSpacing: 1,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.onBackground,

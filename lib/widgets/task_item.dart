@@ -29,9 +29,9 @@ class TaskItem extends StatelessWidget {
       AppLocalizations.of(context).getTranslate("done")
     ];
 
-    return InkWell(
+    return GestureDetector(
       onTap: () {
-        context.goNamed("edit-task", pathParameters: {"id": task.id});
+        context.pushNamed("edit-task", pathParameters: {"id": task.id});
       },
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -48,7 +48,7 @@ class TaskItem extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    task.title,
+                    task.title.trim(),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -63,7 +63,7 @@ class TaskItem extends StatelessWidget {
             ),
             const Gap(15),
             Text(
-              task.description,
+              task.description.trim(),
               overflow: TextOverflow.ellipsis,
               maxLines: 3,
               style: TextStyle(

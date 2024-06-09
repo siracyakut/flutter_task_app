@@ -6,6 +6,23 @@ import 'package:path_provider/path_provider.dart';
 import '../core/data.dart';
 
 class API {
+  getCountryNames() async {
+    try {
+      Dio dio = Dio();
+      List<String> countryNames = [];
+      final response = await dio.get(
+        "https://countryapi.io/api/all?apikey=woj8ebfB7TvjjMpn0RWqKrFhiielMQamacIQNdXi",
+      );
+      Map<String, dynamic> data = response.data;
+      for (var el in data.keys) {
+        countryNames.add(data[el]["name"] + " (${data[el]["alpha2Code"]})");
+      }
+      return countryNames;
+    } on Exception catch (e) {
+      return e;
+    }
+  }
+
   getSplashFileVersion() async {
     try {
       Dio dio = Dio();
