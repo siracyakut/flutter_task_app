@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -38,6 +40,14 @@ class TaskApp extends StatelessWidget {
       ],
       child: BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
         return MaterialApp.router(
+          scrollBehavior: const MaterialScrollBehavior().copyWith(
+            dragDevices: {
+              PointerDeviceKind.mouse,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.stylus,
+              PointerDeviceKind.unknown,
+            },
+          ),
           debugShowCheckedModeBanner: false,
           themeMode: state.darkTheme ? ThemeMode.dark : ThemeMode.light,
           theme: lightTheme,

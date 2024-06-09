@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/add_task.dart';
 import '../screens/core/error.dart';
-import '../screens/core/loading.dart';
+import '../screens/core/splash.dart';
 import '../screens/edit_task.dart';
 import '../screens/home.dart';
 import '../screens/settings.dart';
@@ -39,7 +39,7 @@ final routes = GoRouter(
     ),
     GoRoute(
       path: '/',
-      builder: (context, state) => const LoadingScreen(),
+      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: '/boarding',

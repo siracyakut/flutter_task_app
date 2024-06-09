@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 
 import '../bloc/client/client_cubit.dart';
 import '../core/localizations.dart';
@@ -39,13 +38,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.onBackground,
-        leading: IconButton(
-          onPressed: () => context.go("/home"),
-          icon: Icon(
-            Icons.arrow_back_ios_new_outlined,
-            color: Theme.of(context).colorScheme.onBackground,
-          ),
-        ),
         title: Text(AppLocalizations.of(context).getTranslate("settings")),
       ),
       body: SafeArea(

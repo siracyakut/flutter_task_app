@@ -29,7 +29,7 @@ class TaskItem extends StatelessWidget {
       AppLocalizations.of(context).getTranslate("done")
     ];
 
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         context.goNamed("edit-task", pathParameters: {"id": task.id});
       },
