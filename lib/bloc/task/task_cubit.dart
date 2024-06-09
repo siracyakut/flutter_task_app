@@ -29,7 +29,7 @@ class TaskCubit extends Cubit<TaskState> {
     Task targetTask =
         state.taskList.firstWhere((element) => element.id == taskId);
 
-    newTaskList.remove(targetTask);
+    // newTaskList.remove(targetTask);
 
     targetTask.title = newTask.title;
     targetTask.priority = newTask.priority;
@@ -38,7 +38,7 @@ class TaskCubit extends Cubit<TaskState> {
     targetTask.status = newTask.status;
     targetTask.date = newTask.date;
 
-    newTaskList.add(targetTask);
+    // newTaskList.add(targetTask);
 
     var newState = TaskState(taskList: newTaskList, sortState: state.sortState);
     emit(newState);

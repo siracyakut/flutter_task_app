@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -32,8 +34,12 @@ class TaskApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ClientCubit(
             ClientState(
-              darkTheme: false,
-              language: "en",
+              darkTheme: SchedulerBinding
+                          .instance.platformDispatcher.platformBrightness ==
+                      Brightness.dark
+                  ? true
+                  : false,
+              language: Platform.localeName.split("_")[0],
             ),
           ),
         ),

@@ -59,15 +59,17 @@ class _SplashScreenState extends State<SplashScreen> {
   getSplashData() async {
     if (!kIsWeb) {
       CacheManager cm = CacheManager();
+      API api = API();
+
       Map<String, dynamic>? splashFile =
           await cm.loadJsonFromCache("splash.json");
 
       if (splashFile == null) {
-        splashFile = await API().fetchSplashFiles();
+        splashFile = await api.fetchSplashFiles();
       } else {
-        final version = await API().getSplashFileVersion();
+        final version = await api.getSplashFileVersion();
         if (version != splashFile["version"]) {
-          splashFile = await API().fetchSplashFiles();
+          splashFile = await api.fetchSplashFiles();
         }
       }
 
@@ -88,8 +90,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     taskCubit = context.read<TaskCubit>();
     clientCubit = context.read<ClientCubit>();
-    getSplashData();
     loadApp();
+    getSplashData();
     super.initState();
   }
 
@@ -101,41 +103,44 @@ class _SplashScreenState extends State<SplashScreen> {
             ? const SizedBox.expand()
             : BlocBuilder<ClientCubit, ClientState>(builder: (context, state) {
                 return SizedBox.expand(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.file(
-                        File("${cacheDir.path}/logo.png"),
-                        width: 150,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            splashData["title"],
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.file(
+                          File("${cacheDir.path}/logo.png"),
+                          width: 150,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              splashData["title"],
+                              style: const TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const Gap(5),
-                          Text(
-                            splashData["slogans"][state.language][Random()
-                                .nextInt(splashData["slogans"][state.language]
-                                    .length)],
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          const CircularProgressIndicator(),
-                          const Gap(15),
-                          Text("v${splashData["version"]}"),
-                        ],
-                      ),
-                    ],
+                            const Gap(5),
+                            Text(
+                              splashData["slogans"][state.language][Random()
+                                  .nextInt(splashData["slogans"][state.language]
+                                      .length)],
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            const CircularProgressIndicator(),
+                            const Gap(15),
+                            Text("v${splashData["version"]}"),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }),

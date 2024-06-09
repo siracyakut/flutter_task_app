@@ -120,32 +120,37 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   ),
                 ),
                 const Gap(25),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      priorityItem(
-                        text: AppLocalizations.of(context).getTranslate("asap"),
-                        index: 0,
-                      ),
-                      const Gap(5),
-                      priorityItem(
-                        text: AppLocalizations.of(context).getTranslate("high"),
-                        index: 1,
-                      ),
-                      const Gap(5),
-                      priorityItem(
-                        text:
-                            AppLocalizations.of(context).getTranslate("medium"),
-                        index: 2,
-                      ),
-                      const Gap(5),
-                      priorityItem(
-                        text: AppLocalizations.of(context).getTranslate("low"),
-                        index: 3,
-                      ),
-                    ],
+                Center(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        priorityItem(
+                          text:
+                              AppLocalizations.of(context).getTranslate("asap"),
+                          index: 0,
+                        ),
+                        const Gap(5),
+                        priorityItem(
+                          text:
+                              AppLocalizations.of(context).getTranslate("high"),
+                          index: 1,
+                        ),
+                        const Gap(5),
+                        priorityItem(
+                          text: AppLocalizations.of(context)
+                              .getTranslate("medium"),
+                          index: 2,
+                        ),
+                        const Gap(5),
+                        priorityItem(
+                          text:
+                              AppLocalizations.of(context).getTranslate("low"),
+                          index: 3,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const Gap(20),
@@ -180,29 +185,33 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                   ),
                 ),
                 const Gap(20),
-                SingleChildScrollView(
-                  scrollDirection: clientCubit.getLanguage() == "en"
-                      ? Axis.vertical
-                      : Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      statusItem(
-                        text: AppLocalizations.of(context).getTranslate("todo"),
-                        index: 0,
-                      ),
-                      const Gap(5),
-                      statusItem(
-                        text: AppLocalizations.of(context)
-                            .getTranslate("in-process"),
-                        index: 1,
-                      ),
-                      const Gap(5),
-                      statusItem(
-                        text: AppLocalizations.of(context).getTranslate("done"),
-                        index: 2,
-                      ),
-                    ],
+                Center(
+                  child: SingleChildScrollView(
+                    scrollDirection: clientCubit.getLanguage() == "en"
+                        ? Axis.vertical
+                        : Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        statusItem(
+                          text:
+                              AppLocalizations.of(context).getTranslate("todo"),
+                          index: 0,
+                        ),
+                        const Gap(5),
+                        statusItem(
+                          text: AppLocalizations.of(context)
+                              .getTranslate("in-process"),
+                          index: 1,
+                        ),
+                        const Gap(5),
+                        statusItem(
+                          text:
+                              AppLocalizations.of(context).getTranslate("done"),
+                          index: 2,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
