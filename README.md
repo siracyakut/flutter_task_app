@@ -15,10 +15,12 @@ Task Management App
 </h1>
 
 ### Project Description
-A Flutter application designed for task management. It includes features such as adding/editing/grouping tasks, dark/light mode, multi-language, memory management and boarding page.
+A Flutter application designed for task management. It includes features such as adding/editing/grouping tasks, dark/light mode, multi-language, memory management, cache system, etc...
 
 ### Project Features
-- Boarding Page
+- Boarding Screen
+- Splash Screen
+- Profile Screen with profile photo, name, surname and country options
 - Add/edit/group tasks
 - Task name, description, color, priority and status support
 - Light/Dark Mode
@@ -26,12 +28,16 @@ A Flutter application designed for task management. It includes features such as
 - Loading indicators for high UX
 - Multi-Language (100% Turkish and English Support)
 - Bloc Cubit Structure
+- Auto-Detect Device Language & Theme
+- Cache system with auto-update feature
+- ShellRoutes
+- Responsive Design for All Devices
 
 ### Project Team
 
 | Supervisor | Member 1 | Member 2 |
 | :------------: | :------------: | :------------: |
-| [Keyvan Arasteh (@keyvanarasteh)](https://github.com/keyvanarasteh "Keyvan Arasteh (@keyvanarasteh)") | Hüseyin Siraç Yakut - 222016751 | Bayram Talha Kaya - 222016765 |
+| [Keyvan Arasteh (@keyvanarasteh)](https://github.com/keyvanarasteh "Keyvan Arasteh (@keyvanarasteh)") | Hüseyin Siraç Yakut - 222016751 | İsmail Can Kahraman - 222016731 |
 
 ### Project Screens
 
@@ -69,6 +75,10 @@ A Flutter application designed for task management. It includes features such as
 - [Intl](https://pub.dev/packages/intl "Intl") - It defines the Intl class, with the default locale and methods for accessing most of the internationalization mechanisms.
 - [nanoid](https://pub.dev/packages/nanoid "nanoid") - A tiny, secure, URL-friendly, unique string ID generator. Dart implementation of ai/nanoid.
 - [Pre-Load PageView](https://pub.dev/packages/preload_page_view "Pre-Load PageView") - A pre-load PageView widget which you can use it to preload one page before and after current page.
+- [Path Provider](https://pub.dev/packages/path_provider "Path Provider") - Flutter plugin for getting commonly used locations on host platform file systems, such as the temp and app data directories.
+- [Dio](https://pub.dev/packages/dio "Dio") - A powerful HTTP networking package for Dart/Flutter
+- [Image Picker](https://pub.dev/packages/image_picker "Image Picker") - A Flutter plugin for iOS and Android for picking images from the image library, and taking new pictures with the camera.
+- [Image](https://pub.dev/packages/image "Image") - The Dart Image Library provides the ability to load, save, and manipulate images in a variety of image file formats.
 
 ### License
 
