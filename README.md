@@ -41,24 +41,24 @@ A Flutter application designed for task management. It includes features such as
 
 ### Project Screens
 
-<p align="center">
-  <img src="https://i.hizliresim.com/ohouml2.png" alt="home screen"/>
-  <img src="https://i.hizliresim.com/pralp9g.png" alt="blank home screen"/>
+<p float="left">
+  <img src="https://i.hizliresim.com/ohouml2.png" width="49%" alt="home screen"/>
+  <img src="https://i.hizliresim.com/pralp9g.png" width="49%" alt="blank home screen"/>
 </p>
 
-<p align="center">
-  <img src="https://i.hizliresim.com/dyr4srp.png" alt="add new task (dark) screen"/>
-  <img src="https://i.hizliresim.com/kan1hxb.png" alt="add new task (light) screen"/>
+<p float="left">
+  <img src="https://i.hizliresim.com/dyr4srp.png" width="49%" alt="add new task (dark) screen"/>
+  <img src="https://i.hizliresim.com/kan1hxb.png" width="49%" alt="add new task (light) screen"/>
 </p>
 
-<p align="center">
-  <img src="https://i.hizliresim.com/ema28x3.png" alt="edit task screen"/>
-  <img src="https://i.hizliresim.com/tt9zq3n.png" alt="settings screen"/>
+<p float="left">
+  <img src="https://i.hizliresim.com/ema28x3.png" width="49%" alt="edit task screen"/>
+  <img src="https://i.hizliresim.com/tt9zq3n.png" width="49%" alt="settings screen"/>
 </p>
 
-<p align="center">
-  <img src="https://i.hizliresim.com/k0gxjl5.png" alt="boarding screen"/>
-  <img src="https://i.hizliresim.com/p2if5ik.png" alt="splash screen"/>
+<p float="left">
+  <img src="https://i.hizliresim.com/k0gxjl5.png" width="49%" alt="boarding screen"/>
+  <img src="https://i.hizliresim.com/p2if5ik.png" width="49%" alt="splash screen"/>
 </p>
 
 <p align="center">
