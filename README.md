@@ -42,22 +42,27 @@ A Flutter application designed for task management. It includes features such as
 ### Project Screens
 
 <p align="center">
-  <img src="https://i.hizliresim.com/269c75k.png" alt="home screen"/>
-  <img src="https://i.hizliresim.com/6x0t0kg.png" alt="blank home screen"/>
+  <img src="https://i.hizliresim.com/ohouml2.png" alt="home screen"/>
+  <img src="https://i.hizliresim.com/pralp9g.png" alt="blank home screen"/>
 </p>
 
 <p align="center">
-  <img src="https://i.hizliresim.com/205x92h.png" alt="add new task (dark) screen"/>
-  <img src="https://i.hizliresim.com/eds1zcf.png" alt="add new task (light) screen"/>
+  <img src="https://i.hizliresim.com/dyr4srp.png" alt="add new task (dark) screen"/>
+  <img src="https://i.hizliresim.com/kan1hxb.png" alt="add new task (light) screen"/>
 </p>
 
 <p align="center">
-  <img src="https://i.hizliresim.com/phzli19.png" alt="edit task screen"/>
-  <img src="https://i.hizliresim.com/7lca438.png" alt="settings screen"/>
+  <img src="https://i.hizliresim.com/ema28x3.png" alt="edit task screen"/>
+  <img src="https://i.hizliresim.com/tt9zq3n.png" alt="settings screen"/>
 </p>
 
 <p align="center">
-  <img src="https://i.hizliresim.com/3xqrt3u.png" alt="boarding screen"/>
+  <img src="https://i.hizliresim.com/k0gxjl5.png" alt="boarding screen"/>
+  <img src="https://i.hizliresim.com/p2if5ik.png" alt="splash screen"/>
+</p>
+
+<p align="center">
+  <img src="https://i.hizliresim.com/l2t5nti.png" alt="profile screen"/>
 </p>
 
 ### Used Technologies & Packages
