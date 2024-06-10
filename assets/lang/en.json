@@ -38,5 +38,7 @@
   "file-not-supported": "The file format you selected is not supported.",
   "file-deprecated": "The file you selected is corrupt.",
   "file-min-400px": "The height and width of the image you choose must be at least 400px.",
-  "file-error": "An error occurred during the file selection process. Please try again later."
+  "file-error": "An error occurred during the file selection process. Please try again later.",
+  "save": "Save",
+  "profile-saved": "Your profile has been successfully saved."
 }

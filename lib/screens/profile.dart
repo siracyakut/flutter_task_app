@@ -62,8 +62,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         default:
           Dialogs().errorDialog(
             context: context,
-            text:
-                AppLocalizations.of(context).getTranslate("file-not-supported"),
+            text: AppLocalizations.of(context).getTranslate(
+              "file-not-supported",
+            ),
           );
           return;
       }
@@ -165,7 +166,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       null,
       null,
     );
-    Dialogs().infoDialog(context: context, text: "", navigate: false);
+
+    Dialogs().infoDialog(
+      context: context,
+      text: AppLocalizations.of(context).getTranslate("profile-saved"),
+      navigate: false,
+    );
   }
 
   @override
@@ -296,7 +302,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Expanded(
                       child: OutlinedButton(
                         onPressed: saveInfo,
-                        child: const Text("Save"),
+                        child: Text(
+                          AppLocalizations.of(context).getTranslate("save"),
+                        ),
                       ),
                     ),
                   ],
