@@ -40,5 +40,6 @@
   "file-min-400px": "Seçtiğiniz resmin yükseklik ve genişliği minimum 400px olmalıdır.",
   "file-error": "Dosya seçim işlemi sırasında bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
   "save": "Kaydet",
-  "profile-saved": "Profiliniz başarıyla kayıt edildi."
+  "profile-saved": "Profiliniz başarıyla kayıt edildi.",
+  "web-maintenance": "Bu özellik web platformlarında şu anlık bakımdadır."
 }

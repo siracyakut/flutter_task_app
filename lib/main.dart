@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,9 +40,11 @@ class TaskApp extends StatelessWidget {
                         Brightness.dark
                     ? true
                     : false,
-                language: AppLocalizations.isSupported(
-                        Platform.localeName.split("_")[0])
-                    ? Platform.localeName.split("_")[0]
+                language: !kIsWeb
+                    ? AppLocalizations.isSupported(
+                            Platform.localeName.split("_")[0])
+                        ? Platform.localeName.split("_")[0]
+                        : "en"
                     : "en"),
           ),
         ),

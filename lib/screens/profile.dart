@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,6 +38,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   selectPhoto() async {
+    if (kIsWeb) {
+      return Dialogs().infoDialog(
+        context: context,
+        text: AppLocalizations.of(context).getTranslate("web-maintenance"),
+        navigate: false,
+      );
+    }
+
     try {
       final ImagePicker picker = ImagePicker();
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -47,17 +56,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final String imageFormat = image.name.split('.').last.toLowerCase();
       final img.Image? imageBytes;
       switch (imageFormat) {
-        case ("jpg"):
+        case "jpg":
           imageBytes = img.decodeJpg(File(image.path).readAsBytesSync());
-        case ("jpeg"):
+        case "jpeg":
           imageBytes = img.decodeJpg(File(image.path).readAsBytesSync());
-        case ("png"):
+        case "png":
           imageBytes = img.decodePng(File(image.path).readAsBytesSync());
-        case ("bmp"):
+        case "bmp":
           imageBytes = img.decodeBmp(File(image.path).readAsBytesSync());
-        case ("gif"):
+        case "gif":
           imageBytes = img.decodeGif(File(image.path).readAsBytesSync());
-        case ("tiff"):
+        case "tiff":
           imageBytes = img.decodeTiff(File(image.path).readAsBytesSync());
         default:
           Dialogs().errorDialog(
@@ -120,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } on Exception {
       Dialogs().errorDialog(
         context: context,
-        text: AppLocalizations.of(context).getTranslate("file-min-400px"),
+        text: AppLocalizations.of(context).getTranslate("file-error"),
       );
     }
   }
