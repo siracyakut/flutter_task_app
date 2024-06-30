@@ -33,12 +33,6 @@ A Flutter application designed for task management. It includes features such as
 - ShellRoutes
 - Responsive Design for All Devices
 
-### Project Team
-
-| Supervisor | Member 1 | Member 2 |
-| :------------: | :------------: | :------------: |
-| [Keyvan Arasteh (@keyvanarasteh)](https://github.com/keyvanarasteh "Keyvan Arasteh (@keyvanarasteh)") | Hüseyin Siraç Yakut - 222016751 | İsmail Can Kahraman - 222016731 |
-
 ### Project Screens
 
 <p float="left">
